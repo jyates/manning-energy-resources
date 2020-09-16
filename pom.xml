@@ -21,7 +21,7 @@
   </repositories>
 
  <modules>
-   <module>answers</module>
+   <module>scaffold</module>
    <module>event-generators</module>
  </modules>
 </project>
