@@ -40,7 +40,7 @@ $ docker-compose -f docker-compose-kafka.yml up
 ```
 
 Kafka will then be running in the docker container, and the bootstrap.server property `localhost:29092`.
-The schema registry is available at `localhost:8090`.
+The schema registry is available at [localhost:8090](https://locaclhost:8090).
 
 When the producer attempts to send data to the broker, it will be automatically created.
 
@@ -67,7 +67,10 @@ $  docker exec -it manning-postgres psql -U postgres
 
 Listing schemas ([schema vs database](https://www.postgresql.org/docs/8.1/ddl-schemas.html)):
 ```bash
-$ docker exec -it postgres psql -U postgres -c "SELECT schema_name FROM information_schema.schemata"
+$ sql="SELECT schema_name FROM information_schema.schemata" && \
+  docker exec -it manning-postgres psql -U postgres -c "${sql}"     
+``` 
+```text
     schema_name     
 --------------------
  pg_toast
@@ -82,13 +85,15 @@ $ docker exec -it postgres psql -U postgres -c "SELECT schema_name FROM informat
 Or create a new table ([create table docs](https://www.postgresql.org/docs/9.1/sql-createtable.html))
 , in the public database:
 ```bash
-$  docker exec -it manning-postgres psql -U postgres \
-  -c "CREATE TABLE devices (uuid varchar, state boolean)"
+$ sql="CREATE TABLE devices (uuid varchar, state boolean)" && \
+  docker exec -it manning-postgres psql -U postgres -c "${sql}"
 ```
 
 And list tables
 ```bash
-$  docker exec -it manning-postgres psql -U postgres -c '\dt' 
+$  docker exec -it manning-postgres psql -U postgres -c '\dt'  
+``` 
+```text
           List of relations
  Schema |  Name   | Type  |  Owner   
 --------+---------+-------+----------
@@ -99,8 +104,7 @@ $  docker exec -it manning-postgres psql -U postgres -c '\dt'
 You can stop and remove the container with
  
 ```bash
-$ docker stop manning-postgres
-$ docker rm manning-postgres
+$ docker stop manning-postgres && docker rm manning-postgres
 ```
 
 Finally, enable the `postgres` dependency in the pom, adding the client libraries to the project
@@ -125,7 +129,7 @@ Run the latest (as of writing) available MySQL container, named `manning-mysql`,
 `root` user's password is `secret-pw`.
 
 ```bash
-$ docker run --name manning-mysql -e MYSQL_ROOT_PASSWORD=secret -p 3306:3306 -d mysql:8.0.19
+$ docker run --name manning-mysql -e MYSQL_ROOT_PASSWORD=secret-pw -p 3306:3306 -d mysql:8.0.19
 ```
 
 The container is now running and accessible on port `3306`. 
@@ -133,14 +137,13 @@ The container is now running and accessible on port `3306`.
 You can access the MySQL command line (to do things like creating a database or a table) with
 
 ```bash
-$ docker exec -it manning-mysql mysql -P 3306 -u root --password=secret
+$ docker exec -it manning-mysql mysql -P 3306 -u root --password=secret-pw
 ```
 
 You can stop and remove the container with
  
 ```bash
-$ docker stop manning-mysql
-$ docker rm manning-mysql
+$ docker stop manning-mysql && docker rm manning-mysql
 ```
 
 
@@ -153,6 +156,6 @@ Finally, enable the `mysql` dependency in the pom, adding the client libraries t
 database:
   driverClass: com.mysql.cj.jdbc.Driver
   user: root
-  password: secret
+  password: secret-pw
   url: "jdbc:mysql://0.0.0.0:3306/information_schema"
 ```
