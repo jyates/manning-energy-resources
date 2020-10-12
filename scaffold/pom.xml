@@ -4,14 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Remove the parent section when copying in for local use -->
-  <parent>
-    <groupId>com.jesseyates.manning</groupId>
-    <artifactId>dist-grid</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <!-- END Remove for local use -->
-
   <!-- Maybe you want to use your own groupId here, maybe not. Your call.-->
   <groupId>com.jesseyates.manning</groupId>
   <artifactId>energy-kafka</artifactId>
@@ -33,6 +25,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <build.helper.plugin.version>3.0.0</build.helper.plugin.version>
     <scala-maven-plugin.version>4.3.1</scala-maven-plugin.version>
 
@@ -53,10 +46,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>${maven.compiler.plugin.version}</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
         </configuration>
       </plugin>
       <plugin>
