@@ -29,6 +29,17 @@ random seed used for generating events, enabling a reproducable stream of events
 
 See `--help` for more information.
 
+## Event Information
+
+### Device Events
+
+Device events have a number of fields
+ * charging: how many watts the device has charged since the last event
+ * regionId: UUID of the geographic region for the device
+ * deviceId: UUID of the device
+ 
+The timestamp of the event is considered to be the time of event's arrival.
+
 ## Building the generators
 
 ```
