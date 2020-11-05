@@ -226,6 +226,11 @@
       <artifactId>scala-library</artifactId>
       <version>${scala.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-streams-scala_${scala.compat.version}</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
 
     <!-- Databases drivers -->
     <!-- ****************** -->
