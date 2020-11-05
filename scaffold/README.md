@@ -1,5 +1,8 @@
 # User scaffolding and tools
 
+Hopefully this scaffold will help you get quickly up and running to build you streaming
+applications.
+
 ## Getting started
 
 This template should help you get started quickly with this Manning LiveProject. It is designed
@@ -32,6 +35,16 @@ $ mvn clean generate-sources
 
 All test classes must end in `Test` for both Scala and Java. For example, `ExampleJavaTest` will
  run, but `ExampleTestJava` will not be found by maven as a test class to execute. 
+
+### Using Scala
+
+Java is the easiest language to use to complete the class, but theoretically any JVM language
+should be feasible. In particular, Kafka does have a specific guide to using Scala with 
+Kafka-Streams:
+ https://kafka.apache.org/20/documentation/streams/developer-guide/dsl-api.html#scala-dsl
+
+You _should_ have all the resources you need to build and run the Scala components, but you find
+ you are missing anything a patch would be warmly welcomed!
 
 ## Local Kafka & Confluent Schema Registry
 
